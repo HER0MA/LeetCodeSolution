@@ -17,6 +17,7 @@ class Solution {
         for (int k=1; k<n; k++) {
             for (int i=1; i+k<=n; i++) {
                 int j = i+k;
+                // try all i<=x<=j and select the minimum
                 res[i][j] = i + res[i+1][j];
                 for (int x = i+1; x<j; x++) {
                     res[i][j] = Math.min(res[i][j], x + Math.max(res[i][x-1], res[x+1][j]));
