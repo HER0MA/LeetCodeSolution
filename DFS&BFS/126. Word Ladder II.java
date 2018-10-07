@@ -7,7 +7,7 @@ class Solution {
          * map for store parent-children relationship
          * 
          * visited and unvisited makes a node 
-         * can be visited by all node within one letter differnece in its upper layer
+         * can be visited by all nodes within one letter difference in its upper layer
          * but can not be visited by node in other layers 
          * (even with one letter difference, avoid visit parent)
          *
