@@ -17,7 +17,7 @@ class Solution {
     // helper return level of node
     // leaf node has level 0
     // level of a node is only related to its children
-    // this node should be removed in (level + 1) operation
+    // a node should be removed in (level + 1) operation
     private int helper(TreeNode root, List<List<Integer>> res) {
         if (root==null) return -1;
         int leftLevel = helper(root.left, res);
