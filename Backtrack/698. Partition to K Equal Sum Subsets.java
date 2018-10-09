@@ -1,4 +1,4 @@
-// ?t:n*k s:n
+// ?t:n*2^n s:n
 class Solution {
     public boolean canPartitionKSubsets(int[] nums, int k) {
         int sum = 0;
