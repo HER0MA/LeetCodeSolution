@@ -1,4 +1,5 @@
 // t:n s:1
+// nums[i]<0 means i+1 exists, index 0 stores information for 1
 class Solution {
     public int firstMissingPositive(int[] nums) {
         for (int i=0; i<nums.length; i++) {
