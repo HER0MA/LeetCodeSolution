@@ -14,7 +14,9 @@ class Solution {
                 end = mid;
             }
         }
+        // start * start is alwasy less than x
+        return start;
         // overflow when x is large enough if no (long)
-        return (long) end*end<x ? end : start;
+        // return (long) end*end<x ? end : start;
     }
 }

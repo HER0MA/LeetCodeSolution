@@ -16,6 +16,7 @@ class Solution {
             prev = prev.next;
         }
         ListNode mPrev = prev;
+        // reverse from (m-1)th node to (n-1)th node
         ListNode curr = prev.next;
         ListNode nxt = null;
         for (int i=0; i<n-m; i++) {
@@ -24,8 +25,12 @@ class Solution {
             prev = curr;
             curr = nxt;
         }
+        // connect nth node to revesed part
         nxt = curr.next;
         curr.next = prev;
+        // nxt is (n+1)th node if not null
+        // curr is head of reversed part
+        // mPrev.next is tail of reversed part
         mPrev.next.next = nxt;
         mPrev.next = curr;
         return dummy.next;
