@@ -25,10 +25,10 @@ class Solution {
         int max = 0;
         int res = -1;
         for (int i=0; i<26; i++) {
-            // most letter first
+            // most frequent letter first
             // nextPos confines k distance
             // if no eligible letter return -1
-            if (count[i]>max && nextPos[i]<=index) {
+            if (count[i]>max && index>=nextPos[i]) {
                 max = count[i];
                 res = i;
             }
