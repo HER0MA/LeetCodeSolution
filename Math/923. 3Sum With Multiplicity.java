@@ -43,3 +43,19 @@ class Solution {
         return res;
     }
 }
+// t:n^2 s:n^2
+class Solution {
+    public int threeSumMulti(int[] A, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        int res = 0;
+        for (int i=1; i<A.length; i++) {
+            res += map.getOrDefault(target-A[i], 0);
+            res %= 1000000007;
+            for (int j=0; j<i; j++) {
+                int sum = A[i] + A[j];
+                map.put(sum, map.getOrDefault(sum, 0)+1);
+            }
+        }
+        return res;
+    }
+}

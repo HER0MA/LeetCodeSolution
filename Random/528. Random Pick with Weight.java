@@ -1,3 +1,4 @@
+// weightSum and Binary Search
 class Solution {
     private Random rand;
     private int[] weightAcc;
@@ -38,9 +39,22 @@ class Solution {
         return end;
     }
 }
-
-/**
- * Your Solution object will be instantiated and called as such:
- * Solution obj = new Solution(w);
- * int param_1 = obj.pickIndex();
- */
+// weightSum and TreeMap
+class Solution {
+    private TreeMap<Integer, Integer> map;
+    private int weightSum;
+    private Random rand;
+    
+    public Solution(int[] w) {
+        map = new TreeMap<>();
+        for (int i=0; i<w.length; i++) {
+            weightSum += w[i];
+            map.put(weightSum, i);
+        }
+        rand = new Random();
+    }
+    
+    public int pickIndex() {
+        return map.get(map.higherKey(rand.nextInt(weightSum)));
+    }
+}

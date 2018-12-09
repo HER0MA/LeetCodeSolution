@@ -1,5 +1,58 @@
 // s:n
 class ExamRoom {
+    private int size;
+    private TreeSet<Integer> set;
+    // t:1
+    public ExamRoom(int N) {
+        size = N;
+        set = new TreeSet<>();
+    }
+    // t:n
+    public int seat() {
+        if (set.isEmpty()) {
+            set.add(0);
+            return 0;
+        }
+        if (set.size()==1) {
+            int index = set.first();
+            if (size-1-index > index) {
+                set.add(size-1);
+                return size-1;
+            }
+            set.add(0);
+            return 0;
+        }
+        Iterator<Integer> iter = set.iterator();
+        int left = iter.next();
+        int right = iter.next();
+        int dis = (right-left)/2;
+        int pos = left + dis;
+        while (iter.hasNext()) {
+            left = right;
+            right = iter.next();
+            if ((right-left)/2 > dis) {
+                dis = (right-left)/2;
+                pos = left+dis;
+            }
+        }
+        if (size-1-set.last() > dis) {
+            dis = size-1-set.last();
+            pos = size-1;
+        }
+        if (set.first() >= dis) {
+            pos = 0;
+        }
+        set.add(pos);
+        return pos;
+    }
+    // t:logn
+    public void leave(int p) {
+        set.remove(p);
+    }
+}
+
+// s:n
+class ExamRoom {
     class Range {
         int start;
         int end;
@@ -52,12 +105,6 @@ class ExamRoom {
     }
 }
 
-/**
- * Your ExamRoom object will be instantiated and called as such:
- * ExamRoom obj = new ExamRoom(N);
- * int param_1 = obj.seat();
- * obj.leave(p);
- */
 // s:n
 class ExamRoom {
     private int n;
@@ -101,10 +148,3 @@ class ExamRoom {
         }
     }
 }
-
-/**
- * Your ExamRoom object will be instantiated and called as such:
- * ExamRoom obj = new ExamRoom(N);
- * int param_1 = obj.seat();
- * obj.leave(p);
- */
