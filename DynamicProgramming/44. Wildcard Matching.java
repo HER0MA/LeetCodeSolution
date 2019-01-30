@@ -42,6 +42,7 @@ class Solution {
                 pp ++;
             } else if (pp<p.length() && p.charAt(pp)=='*') {
                 starIdx = pp;
+                // initially '*' matches zero char
                 lastStarMatch = sp;
                 pp ++;
             } else if (starIdx!=-1) {
