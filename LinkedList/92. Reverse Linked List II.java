@@ -9,30 +9,40 @@
 // t:n s:1
 class Solution {
     public ListNode reverseBetween(ListNode head, int m, int n) {
+        if (head == null || head.next == null || m == n) return head;
         ListNode dummy = new ListNode(0);
         dummy.next = head;
-        ListNode prev = dummy;
-        for (int i=1; i<m; i++) {
-            prev = prev.next;
+        ListNode startPrev = dummy;
+        for (int i = 0; i < m - 1; i++) {
+            startPrev = startPrev.next;
         }
-        ListNode mPrev = prev;
-        // reverse from (m-1)th node to (n-1)th node
-        ListNode curr = prev.next;
+        ListNode end = startPrev;
+        for (int i = 0; i < n - m + 1; i++) {
+            end = end.next;
+        }
+        ListNode start = startPrev.next;
+        ListNode endNext = end.next;
+        // unlink the part to be reversed
+        startPrev.next = null;
+        end.next = null;
+
+        reverse(start);
+        // relink
+        startPrev.next = end;
+        start.next = endNext;
+        
+        return dummy.next;
+    }
+    
+    private void reverse(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
         ListNode nxt = null;
-        for (int i=0; i<n-m; i++) {
+        while (curr != null) {
             nxt = curr.next;
             curr.next = prev;
             prev = curr;
             curr = nxt;
         }
-        // connect nth node to revesed part
-        nxt = curr.next;
-        curr.next = prev;
-        // nxt is (n+1)th node if not null
-        // curr is head of reversed part
-        // mPrev.next is tail of reversed part
-        mPrev.next.next = nxt;
-        mPrev.next = curr;
-        return dummy.next;
     }
 }
