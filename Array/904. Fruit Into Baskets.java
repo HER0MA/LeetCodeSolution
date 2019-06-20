@@ -16,7 +16,7 @@ class Solution {
             } else {
                 count = i-prev+1;
                 f2 = tree[i];
-                f1 = tree[prev];
+                f1 = tree[prev]; // must update to prev
             }
             res = Math.max(res, count);
             prev = tree[i]==tree[prev] ? prev : i;

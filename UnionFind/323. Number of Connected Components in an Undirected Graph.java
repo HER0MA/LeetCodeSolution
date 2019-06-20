@@ -24,3 +24,16 @@ class Solution {
         return node;
     }
 }
+/*
+flatten:
+roots[i] = i
+
+int find(int node, int[] roots) {
+    int i = node;
+    while (roots[i]! = i) {
+        i = roots[i];
+    }
+    roots[node] = i;
+    return i;
+}
+*/
