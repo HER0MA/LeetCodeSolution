@@ -37,3 +37,34 @@ class Solution {
         helper(root.right);
     }
 }
+
+
+class Solution {
+    public void recoverTree(TreeNode root) {
+        if (root == null) return;
+        TreeNode prev = null;
+        TreeNode first = null;
+        TreeNode second = null;
+        Stack<TreeNode> stack = new Stack();
+        TreeNode curr = root;
+        while (!stack.isEmpty() || curr != null) {
+            while (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
+            }
+            curr = stack.pop();
+            
+            if (prev != null && prev.val > curr.val) {
+                if (first == null) first = prev;
+                second = curr;
+            }
+            
+            prev = curr;
+            curr = curr.right;
+            
+        }
+        int temp = first.val;
+        first.val = second.val;
+        second.val = temp;
+    }
+}

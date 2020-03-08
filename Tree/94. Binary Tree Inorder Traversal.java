@@ -49,3 +49,34 @@ class Solution {
         return res;
     }
 }
+// Morris Traversal
+// t:n s:1
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList();
+        if (root == null) return res;
+        TreeNode curr = root;
+        TreeNode prev = null;
+        while (curr != null) {
+            if (curr.left == null) {
+                res.add(curr.val); // visit curr
+                curr = curr.right; // move to next Node should visit
+            } else {
+                prev = curr.left;
+                while (prev.right != null && prev.right != curr) {
+                    prev = prev.right;
+                }
+                if (prev.right == null) {
+                    prev.right = curr; // set connection of left subtree to root
+                    curr = curr.left;
+                } else {
+                    // left subtree of curr has been visited
+                    prev.right = null; // disconnect
+                    res.add(curr.val); // visit curr
+                    curr = curr.right; // move to next Node should visit
+                }
+            }
+        }
+        return res;
+    }
+}

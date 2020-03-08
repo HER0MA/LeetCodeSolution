@@ -8,6 +8,7 @@ class Solution {
         int rightMax = 0;
         int res = 0;
         while (left<right) {
+            // left and right point are not processed
             if (height[left]<height[right]) {
                 leftMax = Math.max(leftMax, height[left]);
                 // Since we always choose smaller one to update,

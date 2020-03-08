@@ -9,6 +9,31 @@
 // t:n s:1
 class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
+        int count = 0;
+        ListNode p = head;
+        while (p != null && count < k) {
+            p = p.next;
+            count++;
+        }
+        if (count == k) {
+            p = reverseKGroup(p, k);
+            ListNode prev = p;
+            // use count to limit number of operations
+            // the last node in unreversed part not points to p
+            while (count-- > 0) {
+                ListNode nxt = head.next;
+                head.next = prev;
+                prev = head;
+                head = nxt;
+            }
+            head = prev;
+        }
+        return head;
+    }
+}
+// t:n s:1
+class Solution {
+    public ListNode reverseKGroup(ListNode head, int k) {
         if (head == null) return head;
         ListNode dummy = new ListNode(0);
         dummy.next = head;

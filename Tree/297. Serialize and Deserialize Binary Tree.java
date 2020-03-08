@@ -57,3 +57,46 @@ public class Codec {
 // Your Codec object will be instantiated and called as such:
 // Codec codec = new Codec();
 // codec.deserialize(codec.serialize(root));
+
+
+// Inorder traversal solution
+public class Codec {
+
+    // Encodes a tree to a single string.
+    public String serialize(TreeNode root) {
+        if (root == null) return "";
+        StringBuilder sb = new StringBuilder();
+        serializeHelper(root, sb);
+        return sb.toString();
+    }
+    
+    private void serializeHelper(TreeNode root, StringBuilder sb) {
+        if (root == null) {
+            sb.append("n ");
+            return;
+        }
+        sb.append(root.val + " ");
+        serializeHelper(root.left, sb);
+        serializeHelper(root.right, sb);
+    }
+
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+        if (data.length() == 0) return null;
+        String[] vals = data.split(" ");
+        Queue<String> queue = new LinkedList<>();
+        for (String val : vals) {
+            queue.offer(val);
+        }
+        return deserializeHelper(queue);
+    }
+    
+    private TreeNode deserializeHelper(Queue<String> queue) {
+        String val = queue.poll();
+        if (val.equals("n")) return null;
+        TreeNode root = new TreeNode(Integer.valueOf(val));
+        root.left = deserializeHelper(queue);
+        root.right = deserializeHelper(queue);
+        return root;
+    }
+}

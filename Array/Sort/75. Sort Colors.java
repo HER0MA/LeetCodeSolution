@@ -13,6 +13,8 @@ class Solution {
                  * 0 (index==left) or 1 (index>left)
                  * move index right 
                  */
+                // another way: index should always >= left
+                // if (index == left) index++
                 nums[index++] = nums[left];
                 nums[left++] = 0;
             } else if (nums[index]==2) {
